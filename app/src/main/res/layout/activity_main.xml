@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:text="Ready to Code!"
             android:textSize="@dimen/log_text_size" />
-
     </ScrollView>
 
     <ProgressBar
@@ -56,6 +55,14 @@
             android:onClick="runCode"
             android:text="@string/run_code" />
 
+        <Button
+            android:id="@+id/btnPlayMusic"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onBtnMusicClicked"
+            android:text="Play" />
         <Button
             android:id="@+id/btnClear"
             style="?android:attr/buttonBarButtonStyle"
