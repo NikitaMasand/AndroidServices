@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.example.androidServices;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,5 @@
 package com.example.androidServices;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.helloworld.R;
+import com.example.androidServices.R;
+import com.example.androidServices.services.MyDownloadService;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ScrollView mScroll;
     private TextView mLog;
     private ProgressBar mProgressBar;
-    private String MESSAGE_KEY;
-
+    public static final String MESSAGE_KEY = "message_key";
 
     private void initViews() {
         mScroll = (ScrollView) findViewById(R.id.scrollLog);
@@ -35,14 +36,19 @@ public class MainActivity extends AppCompatActivity {
         log("Running code");
         displayProgressBar(true);
 
+        //send intent to download service
         for(String song : Playlist.songs) {
-
+            Intent intent = new Intent(MainActivity.this, MyDownloadService.class);
+            intent.putExtra(MESSAGE_KEY, song);
+            startService(intent);
         }
         }
 
 
 
     public void clearOutput(View v) {
+        Intent intent = new Intent(MainActivity.this, MyDownloadService.class);
+        stopService(intent);
         mLog.setText("");
         scrollTextToEnd();
     }
