@@ -14,6 +14,10 @@
             android:enabled="true"
             android:exported="false"></service>
 
+        <service
+            android:name=".services.MusicPlayerService"
+            android:exported="false"></service>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
