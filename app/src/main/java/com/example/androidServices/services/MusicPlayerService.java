@@ -18,6 +18,7 @@ public class MusicPlayerService extends Service {
     private final Binder mBinder = new MyServiceBinder();
     private MediaPlayer mPlayer;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,6 +32,8 @@ public class MusicPlayerService extends Service {
                 intent.putExtra(MainActivity.MESSAGE_KEY, "done");
                 LocalBroadcastManager.getInstance(getApplicationContext())
                                     .sendBroadcast(intent);
+
+                stopSelf();
             }
         });
     }
@@ -44,7 +47,7 @@ public class MusicPlayerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: ");
-        return super.onStartCommand(intent, flags, startId);
+        return START_NOT_STICKY;
     }
 
     @Override
@@ -56,7 +59,14 @@ public class MusicPlayerService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(TAG, "onUnbind: ");
-        return super.onUnbind(intent);
+//        return super.onUnbind(intent);
+        return true;
+    }
+
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+        Log.d(TAG, "onRebind: ");
     }
 
     @Override
